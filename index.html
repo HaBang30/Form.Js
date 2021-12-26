@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form-JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <h1 style="text-align: center;">Information form</h1>
+        <form action="" method="get">
+            <table style="margin: auto;">
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        <input type="text" id="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Age
+                    </td>  
+                    <td>
+                        <input type="text" id="age">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address
+                    </td>
+                    <td>
+                        <input type="text" id="address">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        <input type="radio" name="gender" value="male" checked>Male
+                        <input type="radio" name="gender" value="female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Favorite
+                    </td>
+                    <td>
+                        <input type="checkbox" name="check1" value="Java"> Java
+                        <input type="checkbox" name="check2" value="JavaScript"> Java Script
+                        <input type="checkbox" name="check3" value="Python"> Python
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input onclick="send()" type="button" value="Submit">
+                    </td>
+                    <td>
+                        <input onclick="resetForm()" type="button" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+</body>
+</html>
+<script>
+    function send() {
+        var arr = document.getElementsByTagName('input');
+        var name = arr[0].value;
+        var age = arr[1].value;
+        var address = arr[2].value;
+        var check1 = arr[5].checked;
+        var check2 = arr[6].checked;
+        var check3 = arr[7].checked;
+        var gender = "";
+        var favorite ="";
+        if (arr[3].checked) {
+            gender = "Male";
+        } else{
+            gender = "Fmale";
+        }
+        for (var i=5; i<=7; i++) {
+            if (arr[i].checked) {
+                favorite = favorite + arr[i].value + " ";
+            }
+        }
+        if (name == "" || age == "" || address == "") {
+            alert ("Please fill all fields");
+            return;
+        }
+        if (isNaN(age)) {//is not a number
+            alert("Age must is a number");
+            return;
+        }
+        if (check1||check2||check3) {
+
+        }else{
+            alert("least one favorite must be checked");
+            return;
+        }
+        var choice = confirm ("Confirm your information\n" + name + "\n" + age + "\n" + address + "\n" + gender + "\n" + favorite)
+        if (choice == 1) {
+            alert ("information sent");
+        }
+    }
+    function resetForm() {
+        document.getElementsByTagName('form')[0].reset();
+        
+    }
+</script>
